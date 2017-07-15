@@ -2,7 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export const SearchForm = (props) => (
-  <form onSubmit={props.handleSubmit} >
+  <form
+    id="tournamentSearch" 
+    onSubmit={props.handleSubmit}
+  >
     <div className="inputgrp">
       <label htmlFor="search">Tournament</label>
       <input
@@ -13,13 +16,11 @@ export const SearchForm = (props) => (
         value={props.currentSearch}
       />
     </div>
-    <div className="inputgrp">
-      <label htmlFor="player1">Player</label>
-      <input type="text" name="player1" id="player1"/>
-      <label htmlFor="player2">Player</label>
-      <input type="text" name="player2" id="player2"/>
-    </div>
-    <button type="submit">Search</button>
+    <button
+       type="submit"
+    >
+      Search
+    </button>
   </form>
 );
 

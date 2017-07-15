@@ -7,12 +7,12 @@ import { loadBracket } from "./lib/bracketService";
 class App extends Component {
 
   state = {
-    currentSearch: '',
     info: "",
   }
 
   handleInputChange = (evt) => {
     evt.preventDefault();
+    console.log("test", evt);
     const name = evt.target.name;
     this.setState({
       [name]: evt.target.value
@@ -21,11 +21,12 @@ class App extends Component {
 
   handleSearchSubmit = (evt) =>  {
     evt.preventDefault();
-    this.setState({
-      info: document.getElementById("search").value
-    });
+    console.log(evt.target)
+    const searchButton = evt.target.id;
     loadBracket(Number(this.state.currentSearch))
-      .then(response => console.log(response))
+    .then(response => this.setState({
+      [searchButton]: response,
+    }))
   }
 
   handleEmptySubmit = (evt) => {
