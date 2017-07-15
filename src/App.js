@@ -8,7 +8,7 @@ class App extends Component {
 
   state = {
     currentSearch: '',
-    info: "",
+    searchResults: ""
   }
 
   handleInputChange = (evt) => {
@@ -21,11 +21,11 @@ class App extends Component {
 
   handleSearchSubmit = (evt) =>  {
     evt.preventDefault();
-    this.setState({
-      info: document.getElementById("search").value
-    });
     loadBracket(Number(this.state.currentSearch))
-      .then(response => console.log(response))
+      .then(response => this.setState({
+        searchResults: response.entities.seeds[0].mutations.participants[895842].gamerTag
+      }))
+      .then(console.log("It works!"))
   }
 
   handleEmptySubmit = (evt) => {
@@ -42,12 +42,13 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to Rankings</h2>
         </div>
-        <p className="App-intro">Welcome {this.state.info}</p>
+        <p className="App-intro">Welcome 396122</p>
         <SearchForm
           handleInputChange={this.handleInputChange}
           currentSearch={this.state.currentSearch}
           handleSubmit={submitSearchHandler}
         />
+        <p>{this.state.searchResults}</p>
       </div>
     );
   }
