@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { SearchForm } from "./components/ui-form";
-import { loadBracket } from "./lib/bracketService";
+import { loadBracket, SearchTournament, SearchPlayer } from "./lib";
 
 class App extends Component {
 
   state = {
-    info: "",
+    currentSearch: "",
+    player1Results: "",
+    searchResults: ""
   }
 
   handleInputChange = (evt) => {
     evt.preventDefault();
-    console.log("test", evt);
     const name = evt.target.name;
     this.setState({
       [name]: evt.target.value
@@ -21,12 +22,18 @@ class App extends Component {
 
   handleSearchSubmit = (evt) =>  {
     evt.preventDefault();
-    console.log(evt.target)
-    const searchButton = evt.target.id;
-    loadBracket(Number(this.state.currentSearch))
-    .then(response => this.setState({
-      [searchButton]: response,
-    }))
+    const tournamentId = SearchTournament(this.state.currentSearch);
+    const playerId = SearchPlayer(this.state.player1Results);
+    console.log(tournamentId);
+    loadBracket([tournamentId])
+      .then(response => this.setState({
+        searchResults: response.entities.seeds[0].mutations.participants[playerId].gamerTag
+      }))
+      .then(console.log("It works!"));
+  }
+
+  handlePlayerName = (evt) => {
+    evt.preventDefault();
   }
 
   handleEmptySubmit = (evt) => {
@@ -43,12 +50,14 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to Rankings</h2>
         </div>
-        <p className="App-intro">Welcome {this.state.info}</p>
+        <p className="App-intro">Welcome to Rankings</p>
         <SearchForm
           handleInputChange={this.handleInputChange}
           currentSearch={this.state.currentSearch}
+          player1Results={this.state.player1Results}
           handleSubmit={submitSearchHandler}
         />
+        <p>{this.state.searchResults}</p>
       </div>
     );
   }

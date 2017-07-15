@@ -16,6 +16,15 @@ export const SearchForm = (props) => (
         value={props.currentSearch}
       />
     </div>
+    <div className="inputgrg">
+      <label htmlFor="player1Results">Player 1
+        <input type="text"
+          name="player1Results"
+          onChange={props.handleInputChange}
+          value={props.player1Results}
+        />
+      </label>
+    </div>
     <button
        type="submit"
     >
@@ -26,6 +35,7 @@ export const SearchForm = (props) => (
 
 SearchForm.propTypes = {
   currentSearch: PropTypes.string.isRequired,
+  player1Results: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired
 }
