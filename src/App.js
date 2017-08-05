@@ -24,12 +24,18 @@ class App extends Component {
     evt.preventDefault();
     const tournamentId = SearchTournament(this.state.currentSearch);
     const playerId = SearchPlayer(this.state.player1Results);
-    console.log(tournamentId);
-    loadBracket([tournamentId])
-      .then(response => this.setState({
-        searchResults: response.entities.seeds[0].mutations.participants[playerId].gamerTag
-      }))
-      .then(console.log("It works!"));
+    this.setState({
+      searchResults: playerId
+    })
+    //console.log(tournamentId);
+    //loadBracket([tournamentId])
+      //.then(response => //response.entities.seeds.map((i) => 
+        //console.log(response.entities.seeds)) 
+        //this.setState({
+        //searchResults: response.entities.seeds[0].mutations.participants[playerId].gamerTag
+      //})
+    //)
+      //.then(console.log("It works!"));
   }
 
   handlePlayerName = (evt) => {
