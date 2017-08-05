@@ -23,10 +23,34 @@ class App extends Component {
   handleSearchSubmit = (evt) =>  {
     evt.preventDefault();
     const tournamentId = SearchTournament(this.state.currentSearch);
-    const playerId = SearchPlayer(this.state.player1Results);
-    this.setState({
-      searchResults: playerId
-    })
+    //const playerId = SearchPlayer();
+
+    loadBracket(323872)
+      .then(res => {
+        const seedList = res.entities.seeds.map(obj => {
+          return Object.keys(obj.mutations.participants);
+        });
+        console.log(seedList)    
+        console.log(seedList[0])
+        const playerNames = res.entities.seeds.map((obj, i) => {
+          return obj.mutations.participants[seedList[i]].gamerTag;
+        });
+        //console.log(playerNames)
+        //console.log(userInput);
+        const r = playerNames.filter( name => {
+          console.log(name);
+          return name === this.state.player1Results
+        });
+        const result = r.length === 0 ? "Player Not Found" : r[0];
+        console.log("Filter return", r[0])
+        const q = r[0];
+        return result;
+      }).then(r => {
+        this.setState({
+          searchResults: r
+        })
+      });
+
     //console.log(tournamentId);
     //loadBracket([tournamentId])
       //.then(response => //response.entities.seeds.map((i) => 
