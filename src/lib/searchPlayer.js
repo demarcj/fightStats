@@ -1,23 +1,24 @@
-import {loadBracket} from "./bracketService"
+import { loadBracket } from "./bracketService";
 
-  
+export const SearchPlayer = (userInput) => {
+let lb =   loadBracket(323872)
+  .then(res => {
+    const seedList = res.entities.seeds.map(obj => {
+      return Object.keys(obj.mutations.participants);
+    });
+    console.log(seedList)    
+    console.log(seedList[0])
+    const playerNames = res.entities.seeds.map((obj, i) => {
+      return obj.mutations.participants[seedList[i]].gamerTag;
+    });
+    const r = playerNames.filter( name => {
+      console.log(name);
+      return name === userInput
+    });
+    console.log("Filter return", r[0])
+    const q = r[0];
+    return r[0];
+  });
 
-export const SearchPlayer = async function(playerName) {
-  let getId = "Player not found!";
-  loadBracket(335886)
-    .then(response => {
-      let playerList = response.entities.seeds.map((obj) => Object.keys(obj.mutations.participants));
-      response.entities.seeds.map(function(obj, i) {
-        let valPlayer = obj.mutations.participants[playerList[i]].gamerTag;
-        if(valPlayer === playerName){
-          getId = valPlayer;
-          console.log(getId);
-          return valPlayer
-        } else {
-          return getId;
-        }
-      })
-    })
-  return getId;
+  return lb
 }
-

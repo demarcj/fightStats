@@ -23,27 +23,29 @@ class App extends Component {
   handleSearchSubmit = (evt) =>  {
     evt.preventDefault();
     const tournamentId = SearchTournament(this.state.currentSearch);
-    const playerId = SearchPlayer(this.state.player1Results);
-    this.setState({
-      searchResults: playerId
-    })
-    // loadBracket([tournamentId])
-    //   .then(response => {
-    //     let playerList = response.entities.seeds.map((obj) => Object.keys(obj.mutations.participants));
-    //     response.entities.seeds.map((obj, i) => {
-    //       let valPlayer = obj.mutations.participants[playerList[i]].gamerTag;
-    //       console.log(this.state.player1Results);
-    //       if(this.state.player1Results === valPlayer){
-    //         console.log("This Works!");
-    //         return this.setState({searchResults: this.state.player1Results});
-    //       } else {
-    //         this.setState({
-    //           searchResults: "Player not found!"
-    //         });
-    //       }
-    //       // return this.state.searchResults;
-    //     })  
-    //   }); 
+    loadBracket(tournamentId)
+      .then(res => {
+        const seedList = res.entities.seeds.map(obj => {
+          return Object.keys(obj.mutations.participants);
+        });
+        console.log(seedList)    
+        console.log(seedList[0])
+        const playerNames = res.entities.seeds.map((obj, i) => {
+          return obj.mutations.participants[seedList[i]].gamerTag;
+        });
+        const r = playerNames.filter( name => {
+          console.log(name);
+          return name === this.state.player1Results
+        });
+        const result = r.length === 0 ? "Player Not Found" : r[0];
+        console.log("Filter return", r[0])
+        const q = r[0];
+        return result;
+      }).then(r => {
+        this.setState({
+          searchResults: r
+        })
+      });
   }
 
   handlePlayerName = (evt) => {
