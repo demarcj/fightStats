@@ -25,24 +25,13 @@ class App extends Component {
     evt.preventDefault();
     const result = SearchPlayer(this.state.player1Results)
       .then(res => {
-        this.setState({
-          searchResults: res
-        })
-      })
-    // const getTournament = loadTournament(this.state.currentSearch)
-    //   .then(res => {
-    //     let tournamentName = res.entities.event.map(obj => {
-    //       return obj.id;
-    //     });
-    //     return tournamentName;
-    // }).then(q => {
-    //     console.log(q);
-    //   // this.setState({
-    //   //   test: q
-    //   // })
-    // })
+        this.setState({ searchResults: res });
+      });
 
-    // this.setState({ test: getTournament });
+    const getTournament = SearchTournament(this.state.currentSearch)
+      .then(resTournament => {
+        this.setState({ test: resTournament });
+      });
   }
 
   handlePlayerName = (evt) => {
