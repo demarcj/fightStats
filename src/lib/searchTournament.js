@@ -1,13 +1,11 @@
 import { loadTournament } from "./tournamentService";
 
 export const SearchTournament = (userInput) =>  {
-  loadBracket("genesis-3")
+  loadTournament(userInput)
   .then(res => {
-    
+    let tournamentName = res.entities.event.map(obj => {
+      return obj.id;
+    })
+    return tournamentName;
   })
-  let inputTournament = 0;
-  if(tournamentName === "ceo2017"){
-    inputTournament = 384596
-  }
-  return inputTournament;
 }

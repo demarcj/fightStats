@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { SearchForm } from "./components/ui-form";
-import { loadBracket, SearchTournament, SearchPlayer } from "./lib";
+import { loadBracket, SearchTournament, SearchPlayer, loadTournament } from "./lib";
 
 class App extends Component {
 
   state = {
     currentSearch: "",
     player1Results: "",
-    searchResults: ""
+    searchResults: "",
+    test: ""
   }
 
   handleInputChange = (evt) => {
@@ -22,30 +23,26 @@ class App extends Component {
 
   handleSearchSubmit = (evt) =>  {
     evt.preventDefault();
-    const tournamentId = SearchTournament(this.state.currentSearch);
-    loadBracket(tournamentId)
+    const result = SearchPlayer(this.state.player1Results)
       .then(res => {
-        const seedList = res.entities.seeds.map(obj => {
-          return Object.keys(obj.mutations.participants);
-        });
-        console.log(seedList)    
-        console.log(seedList[0])
-        const playerNames = res.entities.seeds.map((obj, i) => {
-          return obj.mutations.participants[seedList[i]].gamerTag;
-        });
-        const r = playerNames.filter( name => {
-          console.log(name);
-          return name === this.state.player1Results
-        });
-        const result = r.length === 0 ? "Player Not Found" : r[0];
-        console.log("Filter return", r[0])
-        const q = r[0];
-        return result;
-      }).then(r => {
         this.setState({
-          searchResults: r
+          searchResults: res
         })
-      });
+      })
+    // const getTournament = loadTournament(this.state.currentSearch)
+    //   .then(res => {
+    //     let tournamentName = res.entities.event.map(obj => {
+    //       return obj.id;
+    //     });
+    //     return tournamentName;
+    // }).then(q => {
+    //     console.log(q);
+    //   // this.setState({
+    //   //   test: q
+    //   // })
+    // })
+
+    // this.setState({ test: getTournament });
   }
 
   handlePlayerName = (evt) => {
@@ -74,6 +71,7 @@ class App extends Component {
           handleSubmit={submitSearchHandler}
         />
         <p>{this.state.searchResults}</p>
+        <p>{this.state.test}</p>
       </div>
     );
   }
