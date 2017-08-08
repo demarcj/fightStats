@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { SearchForm } from "./components/ui-form";
-import { loadBracket, SearchTournament, SearchPlayer, loadTournament } from "./lib";
+import { SearchTournament, SearchPlayer } from "./lib";
 
 class App extends Component {
 
   state = {
-    currentSearch: "",
-    player1Results: "",
+    error: "",
+    searchTournament: "",
+    searchPlayer1: "",
     searchResults: "",
-    test: ""
+    setTournament: ""
   }
 
   handleInputChange = (evt) => {
@@ -23,29 +24,35 @@ class App extends Component {
 
   handleSearchSubmit = (evt) =>  {
     evt.preventDefault();
-    const result = SearchPlayer(this.state.player1Results)
+    SearchTournament(this.state.searchTournament)
+      .then(resTournament => {
+        this.setState({ setTournament: resTournament });
+      });
+
+    SearchPlayer(this.state.searchPlayer1, this.state.setTournament)
       .then(res => {
         this.setState({ searchResults: res });
-      });
-
-    const getTournament = SearchTournament(this.state.currentSearch)
-      .then(resTournament => {
-        this.setState({ test: resTournament });
-      });
+    });
   }
 
-  handlePlayerName = (evt) => {
-    evt.preventDefault();
-  }
+  // handlePlayerName = (evt) => {
+  //   evt.preventDefault();
+  //   const getPlayer1Name = SearchPlayer(this.state.searchPlayer1, this.state.setTournament)
+  //     .then(res => {
+  //       this.setState({ searchResults: res });
+  //   });
+  // }
 
   handleEmptySubmit = (evt) => {
     evt.preventDefault();
-    console.log('Nope');
+    this.setState({ 
+      error: "Empty field"
+    })
   }
 
   render() {
 
-    const submitSearchHandler = this.state.currentSearch ? this.handleSearchSubmit : this.handleEmptySubmit
+    const submitSearchHandler = this.state.searchTournament ? this.handleSearchSubmit : this.handleEmptySubmit
     return (
       <div className="App">
         <div className="App-header">
@@ -53,14 +60,14 @@ class App extends Component {
           <h2>Welcome to Rankings</h2>
         </div>
         <p className="App-intro">Welcome to Rankings</p>
+        <p>{this.state.error}</p>
         <SearchForm
           handleInputChange={this.handleInputChange}
-          currentSearch={this.state.currentSearch}
-          player1Results={this.state.player1Results}
+          searchTournament={this.state.searchTournament}
+          searchPlayer1={this.state.searchPlayer1}
           handleSubmit={submitSearchHandler}
         />
         <p>{this.state.searchResults}</p>
-        <p>{this.state.test}</p>
       </div>
     );
   }

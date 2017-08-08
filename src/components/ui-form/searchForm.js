@@ -10,18 +10,18 @@ export const SearchForm = (props) => (
       <label htmlFor="search">Tournament</label>
       <input
         type="text"
-        name="currentSearch"
+        name="searchTournament"
         id="search"
         onChange={props.handleInputChange}
-        value={props.currentSearch}
+        value={props.searchTournament}
       />
     </div>
     <div className="inputgrg">
       <label htmlFor="player1Results">Player 1
         <input type="text"
-          name="player1Results"
+          name="searchPlayer1"
           onChange={props.handleInputChange}
-          value={props.player1Results}
+          value={props.searchPlayer1}
         />
       </label>
     </div>
@@ -34,8 +34,8 @@ export const SearchForm = (props) => (
 );
 
 SearchForm.propTypes = {
-  currentSearch: PropTypes.string.isRequired,
-  player1Results: PropTypes.string.isRequired,
+  searchTournament: PropTypes.string.isRequired,
+  searchPlayer1: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired
 }

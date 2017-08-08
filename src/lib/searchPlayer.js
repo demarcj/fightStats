@@ -1,20 +1,21 @@
 import { loadBracket } from "./bracketService";
 
-export const SearchPlayer = (userInput) => {
-  let test = loadBracket(323872)
+export const SearchPlayer = (userInput, tournamentId) => {
+  console.log("Tournament Id Test", tournamentId)
+  let getPlayerName = loadBracket(323872)
       .then(res => {
         const seedList = res.entities.seeds.map(obj => {
           return Object.keys(obj.mutations.participants);
         });
-        const playerNames = res.entities.seeds.map((obj, i) => {
+        const playerNameList = res.entities.seeds.map((obj, i) => {
           return obj.mutations.participants[seedList[i]].gamerTag;
         });
-        const r = playerNames.filter( name => {
+        const playerName = playerNameList.filter( name => {
           return name === userInput;
         });
-        // const result = r.length === 0 ? "Player Not Found" : r[0];
-        return r;
+        const result = playerName.length === 0 ? "Player Not Found" : playerName[0];
+        return result;
       })
-  console.log(test);
-  return test;
+  console.log(getPlayerName);
+  return getPlayerName;
 }
