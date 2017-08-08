@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { SearchForm } from "./components/ui-form";
-import { SearchTournament, SearchPlayer } from "./lib";
+import { SearchTournament, SearchPlayer, testError } from "./lib";
 
 class App extends Component {
 
@@ -25,14 +25,11 @@ class App extends Component {
   handleSearchSubmit = (evt) =>  {
     evt.preventDefault();
     SearchTournament(this.state.searchTournament)
-      .then(resTournament => {
-        this.setState({ setTournament: resTournament });
-      });
-
-    SearchPlayer(this.state.searchPlayer1, this.state.setTournament)
+      .then(resTournament => SearchPlayer(this.state.searchPlayer1, resTournament))
       .then(res => {
+        console.log("res", res);
         this.setState({ searchResults: res });
-    });
+      });
   }
 
   // handlePlayerName = (evt) => {
@@ -45,8 +42,10 @@ class App extends Component {
 
   handleEmptySubmit = (evt) => {
     evt.preventDefault();
+    // let setError = ""
+    let getErrorTest = testError(this.state.searchTournament, this.state.searchPlayer1)
     this.setState({ 
-      error: "Empty field"
+      error: [getErrorTest]
     })
   }
 
