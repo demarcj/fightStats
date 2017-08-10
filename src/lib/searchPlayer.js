@@ -1,28 +1,36 @@
 import { loadBracket } from "./bracketService";
 
-export const SearchPlayer = (userInput, tournamentId) => {
-  console.log("Tournament Id Test", tournamentId)
-  const getPlayerName = tournamentId.map(id => {
-    let loadId = loadBracket(10665)
+export const SearchPlayer = (userInputTournamentName, userInputPlayerName, pageNum) => {
+  let i = 0;
+  function pageLoop() {
+    i++
+    console.log("Loop iterable", i);
+    loadBracket(userInputTournamentName, i)
       .then(res => {
-        if(res.hasOwnProperty('entities')){
-          const seedList = res.entities.seeds.map(obj => {
+          const entrantList = res.items.entities.entrants.map(obj => {
             return Object.keys(obj.mutations.participants);
           });
-          const playerNameList = res.entities.seeds.map((obj, i) => {
-            console.log("playerNameList", obj.mutations.participants[seedList[i]].gamerTag);
-            return obj.mutations.participants[seedList[i]].gamerTag;
+          const playerNameList = res.items.entities.entrants.map((obj, i) => {
+            console.log("playerNameList", obj.mutations.participants[entrantList[i]].gamerTag);
+            return obj.mutations.participants[entrantList[i]].gamerTag;
           });
           const playerName = playerNameList.filter( name => {
-            return name === userInput;
+            return name === userInputPlayerName;
           });
-          //console.log("playerName", playerName[0]);
-          const playerNameResult = playerName.length === 0 ? undefined : playerName[0];
-          return playerNameResult;
-        }
+          let playerNameResult = "";
+          if(playerName.length === 0){
+            if(i >= pageNum){
+              console.log("Player Not Found!")
+              return "Player Not Found!";
+            }
+            return pageLoop();
+            } else {
+              playerNameResult = playerName[0];
+              console.log("Test type", playerNameResult)
+              return playerNameResult;
+          }
       })
-      return loadId;
-  })
-  console.log("getPlayerName", getPlayerName[0]);
-  return getPlayerName[0];
+    }
+  return pageLoop();
 }
+ 

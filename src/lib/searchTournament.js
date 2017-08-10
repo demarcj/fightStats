@@ -1,12 +1,10 @@
 import { loadTournament } from "./tournamentService";
 
 export const SearchTournament = (userInput) =>  {
-  const getTournamentId = loadTournament(userInput)
+  const getTournamentObjectToNumber = loadTournament(userInput)
   .then(res => {
-    const tournamentId = res.entities.event.map(obj => {
-      return obj.id;
-    })
-    return tournamentId;
+    const tournamentObjectToNumber = Math.ceil(Number(res.total_count)/100);
+    return tournamentObjectToNumber;
   })
-  return getTournamentId;
+  return getTournamentObjectToNumber;
 }

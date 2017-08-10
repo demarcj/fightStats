@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { SearchForm } from "./components/ui-form";
-import { SearchTournament, SearchPlayer, testError } from "./lib";
+import { SearchTournament, SearchPlayer, testError, loadBracket } from "./lib";
 
 class App extends Component {
 
@@ -25,24 +25,19 @@ class App extends Component {
   handleSearchSubmit = (evt) =>  {
     evt.preventDefault();
     SearchTournament(this.state.searchTournament)
-      .then(resTournament => SearchPlayer(this.state.searchPlayer1, resTournament))
-      .then(res => {
-        console.log("res", res);
-        this.setState({ searchResults: res });
-      });
+      .then(pageNum => {
+        let result = SearchPlayer(this.state.searchTournament, this.state.searchPlayer1, pageNum);
+        console.log("Test result", result);
+        this.setState({searchResults: result});
+      })
+      // .then(playerResult => {
+      //   console.log("Async problem", playerResult);
+      //   this.setState({ searchResults: playerResult })
+      // })
   }
-
-  // handlePlayerName = (evt) => {
-  //   evt.preventDefault();
-  //   const getPlayer1Name = SearchPlayer(this.state.searchPlayer1, this.state.setTournament)
-  //     .then(res => {
-  //       this.setState({ searchResults: res });
-  //   });
-  // }
 
   handleEmptySubmit = (evt) => {
     evt.preventDefault();
-    // let setError = ""
     let getErrorTest = testError(this.state.searchTournament, this.state.searchPlayer1)
     this.setState({ 
       error: [getErrorTest]
