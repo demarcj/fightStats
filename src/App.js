@@ -10,8 +10,7 @@ class App extends Component {
     error: "",
     searchTournament: "",
     searchPlayer1: "",
-    searchResults: "",
-    setTournament: ""
+    searchResults: ""
   }
 
   handleInputChange = (evt) => {
@@ -25,15 +24,11 @@ class App extends Component {
   handleSearchSubmit = (evt) =>  {
     evt.preventDefault();
     SearchTournament(this.state.searchTournament)
-      .then(pageNum => {
-        let result = SearchPlayer(this.state.searchTournament, this.state.searchPlayer1, pageNum);
-        console.log("Test result", result);
-        this.setState({searchResults: result});
+      .then(maxPageNum => SearchPlayer(this.state.searchTournament, this.state.searchPlayer1, maxPageNum))
+      .then(playerResult => {
+        console.log("Async problem", playerResult);
+        this.setState({ searchResults: playerResult })
       })
-      // .then(playerResult => {
-      //   console.log("Async problem", playerResult);
-      //   this.setState({ searchResults: playerResult })
-      // })
   }
 
   handleEmptySubmit = (evt) => {

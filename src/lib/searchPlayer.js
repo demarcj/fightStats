@@ -1,36 +1,37 @@
-import { loadBracket } from "./bracketService";
+import { loadBracket, checkPlayerName } from "./index";
 
-export const SearchPlayer = (userInputTournamentName, userInputPlayerName, pageNum) => {
-  let i = 0;
-  function pageLoop() {
-    i++
-    console.log("Loop iterable", i);
-    loadBracket(userInputTournamentName, i)
+let pageNum = 1;
+
+export const SearchPlayer = (userInputTournamentName, userInputPlayerName, maxPageNum) => {
+  // function pageLoop() {
+  //   i++
+    // console.log("Loop iterable", i);
+    let bracket = loadBracket(userInputTournamentName, 1)
       .then(res => {
-          const entrantList = res.items.entities.entrants.map(obj => {
+           pageNum++
+          const playerName = res.items.entities.entrants.map(obj => {
             return Object.keys(obj.mutations.participants);
+          })
+          .map((key, i) => {
+            console.log("playerNameList", res.items.entities.entrants[i].mutations.participants[key].gamerTag);
+            return res.items.entities.entrants[i].mutations.participants[key].gamerTag;
+          })
+          .filter( name => {
+            return checkPlayerName(name) === checkPlayerName(userInputPlayerName);
           });
-          const playerNameList = res.items.entities.entrants.map((obj, i) => {
-            console.log("playerNameList", obj.mutations.participants[entrantList[i]].gamerTag);
-            return obj.mutations.participants[entrantList[i]].gamerTag;
-          });
-          const playerName = playerNameList.filter( name => {
-            return name === userInputPlayerName;
-          });
-          let playerNameResult = "";
+
           if(playerName.length === 0){
-            if(i >= pageNum){
-              console.log("Player Not Found!")
+            if(pageNum >= maxPageNum){
               return "Player Not Found!";
             }
-            return pageLoop();
+            return bracket;
             } else {
-              playerNameResult = playerName[0];
-              console.log("Test type", playerNameResult)
-              return playerNameResult;
+              return playerName[0];
           }
       })
-    }
-  return pageLoop();
+
+    return bracket;
+    // }
+  // return pageLoop();
 }
  
