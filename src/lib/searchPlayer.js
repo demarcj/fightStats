@@ -1,4 +1,4 @@
-import { loadBracket, checkPlayerName } from "./index";
+import { loadBracket, checkPlayerName, checkTournamentName } from "./index";
 
 let pageNum = 1;
 
@@ -6,7 +6,8 @@ export const SearchPlayer = (userInputTournamentName, userInputPlayerName, maxPa
   // function pageLoop() {
   //   i++
     // console.log("Loop iterable", i);
-    let bracket = loadBracket(userInputTournamentName, 1)
+    const tournamentName = checkTournamentName(userInputTournamentName)
+    let bracket = loadBracket(tournamentName, 1)
       .then(res => {
            pageNum++
           const playerName = res.items.entities.entrants.map(obj => {

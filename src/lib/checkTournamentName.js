@@ -1,3 +1,4 @@
 export const checkTournamentName = (name) => {
-  return name;
+  const tournamentNameChecker = name.toLowerCase().split(" ").join("-");
+  return tournamentNameChecker;
 }
