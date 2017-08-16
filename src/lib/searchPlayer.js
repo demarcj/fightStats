@@ -1,6 +1,6 @@
 import { loadBracket, checkPlayerName, checkTournamentName } from "./index";
 
-export const SearchPlayer = (userInputTournamentName, userInputPlayerName, maxPageNum) => {
+export const searchPlayer = (userInputTournamentName, userInputPlayerName, maxPageNum) => {
   // function pageLoop() {
     let pageNum = 1;
     const tournamentName = checkTournamentName(userInputTournamentName)

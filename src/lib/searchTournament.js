@@ -1,6 +1,6 @@
 import { loadTournament, checkTournamentName } from "./index";
 
-export const SearchTournament = (userInput) =>  {
+export const searchTournament = (userInput) =>  {
   const tournamentName = checkTournamentName(userInput);
   const getTournamentObjectToNumber = loadTournament(tournamentName)
   .then(res => {

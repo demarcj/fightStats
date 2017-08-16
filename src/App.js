@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { SearchForm } from "./components/ui-form";
-import { SearchTournament, SearchPlayer, testError, loadBracket } from "./lib";
+import { searchForm } from "./components/ui-form";
+import { searchTournament, searchPlayer, testError, loadBracket } from "./lib";
 
 class App extends Component {
 

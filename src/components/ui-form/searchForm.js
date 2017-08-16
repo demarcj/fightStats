@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export const SearchForm = (props) => (
+export const searchForm = (props) => (
   <form
     id="tournamentSearch" 
     onSubmit={props.handleSubmit}
