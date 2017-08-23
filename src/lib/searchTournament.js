@@ -1,11 +1,9 @@
-import { loadTournament, checkTournamentName } from "./index";
+import { loadTournament, checkTournamentName, loadBracket } from "./index";
 
-export const searchTournament = (userInput) =>  {
-  const tournamentName = checkTournamentName(userInput);
-  const getTournamentObjectToNumber = loadTournament(tournamentName)
-  .then(res => {
-    const tournamentObjectToNumber = Math.ceil(Number(res.total_count)/100);
-    return tournamentObjectToNumber;
-  })
-  return getTournamentObjectToNumber;
+export const searchTournament = async (userInputTournament, playerName) =>  {
+  const tournamentName = checkTournamentName(userInputTournament);
+  const getTournamentObjectToNumber = await loadTournament(tournamentName);
+  const tournamentObjectToNumber = await Math.ceil(Number(getTournamentObjectToNumber.total_count)/100);
+  const result = await loadBracket(tournamentName, tournamentObjectToNumber, playerName);
+  return result;
 }

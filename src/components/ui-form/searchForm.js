@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export const searchForm = (props) => (
+export const SearchForm = (props) => (
   <form
     id="tournamentSearch" 
     onSubmit={props.handleSubmit}
@@ -10,10 +10,10 @@ export const searchForm = (props) => (
       <label htmlFor="search">Tournament</label>
       <input
         type="text"
-        name="searchTournament"
+        name="searchTournamentName"
         id="search"
         onChange={props.handleInputChange}
-        value={props.searchTournament}
+        value={props.searchTournamentName}
       />
     </div>
     <div className="inputgrg">
@@ -34,7 +34,7 @@ export const searchForm = (props) => (
 );
 
 SearchForm.propTypes = {
-  searchTournament: PropTypes.string.isRequired,
+  searchTournamentName: PropTypes.string.isRequired,
   searchPlayer1: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired

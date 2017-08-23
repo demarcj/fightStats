@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { searchForm } from "./components/ui-form";
-import { searchTournament, searchPlayer, testError, loadBracket } from "./lib";
+import { SearchForm } from "./components/ui-form";
+import { searchTournament, testError } from "./lib";
 
 class App extends Component {
 
   state = {
     error: "",
-    searchTournament: "",
+    searchTournamentName: "",
     searchPlayer1: "",
     searchResults: ""
   }
@@ -16,24 +16,20 @@ class App extends Component {
   handleInputChange = (evt) => {
     evt.preventDefault();
     const name = evt.target.name;
-    this.setState({
-      [name]: evt.target.value
-    })
+    this.setState({ [name]: evt.target.value })
   }
 
-  handleSearchSubmit = (evt) =>  {
+  handleSearchSubmit = async (evt) =>  {
     evt.preventDefault();
-    SearchTournament(this.state.searchTournament)
-      .then(maxPageNum => SearchPlayer(this.state.searchTournament, this.state.searchPlayer1, maxPageNum))
-      .then(playerResult => {
-        console.log("Async problem", playerResult);
-        this.setState({ searchResults: playerResult })
-      })
+    const tournament = this.state.searchTournamentName;
+    const player1 = this.state.searchPlayer1;
+    const tournamentList = await searchTournament(tournament, player1); 
+    this.setState({ searchResults: [tournamentList] })
   }
 
   handleEmptySubmit = (evt) => {
     evt.preventDefault();
-    let getErrorTest = testError(this.state.searchTournament, this.state.searchPlayer1)
+    let getErrorTest = testError(this.state.searchTournamentName, this.state.searchPlayer1)
     this.setState({ 
       error: [getErrorTest]
     })
@@ -41,7 +37,7 @@ class App extends Component {
 
   render() {
 
-    const submitSearchHandler = this.state.searchTournament ? this.handleSearchSubmit : this.handleEmptySubmit
+    const submitSearchHandler = this.state.searchTournamentName ? this.handleSearchSubmit : this.handleEmptySubmit
     return (
       <div className="App">
         <div className="App-header">
@@ -52,7 +48,7 @@ class App extends Component {
         <p>{this.state.error}</p>
         <SearchForm
           handleInputChange={this.handleInputChange}
-          searchTournament={this.state.searchTournament}
+          searchTournamentName={this.state.searchTournamentName}
           searchPlayer1={this.state.searchPlayer1}
           handleSubmit={submitSearchHandler}
         />
