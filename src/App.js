@@ -11,7 +11,7 @@ class App extends Component {
     searchTournamentName: "",
     searchPlayer1: "",
     searchResults: "",
-    eventList: []
+    eventList: ["", "Games"]
   }
 
   handleInputChange = (evt) => {
@@ -25,7 +25,7 @@ class App extends Component {
     const tournament = this.state.searchTournamentName;
     const player1 = this.state.searchPlayer1;
     const tournamentList = await searchTournament(tournament, player1); 
-    this.setState({ searchResults: [tournamentList] })
+    this.setState({ searchResults: tournamentList })
   }
 
   handleTournamentSubmit = async (evt) =>  {
@@ -38,7 +38,7 @@ class App extends Component {
   handleEmptySubmit = (evt) => {
     evt.preventDefault();
     const getErrorTest = testError(this.state.searchTournamentName, this.state.searchPlayer1)
-    this.setState({ error: [getErrorTest] })
+    this.setState({ error: getErrorTest })
   }
 
   render() {

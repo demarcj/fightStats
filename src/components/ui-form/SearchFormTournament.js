@@ -2,7 +2,7 @@ import React from "react";
 // import PropTypes from "prop-types";
 
 export const SearchFormTournament = (props) => {
-  console.log(props.eventList);
+  const noVenueList = props.eventList.slice(1, props.eventList.length);
   return (
     <form onSubmit={props.handleTournamentSubmit}>
       <label htmlFor="">Tournament</label>
@@ -14,7 +14,7 @@ export const SearchFormTournament = (props) => {
         value={props.searchTournamentName}
       />
       <select>
-        {props.eventList.map((event, i) => <option key={i.toString()}>{event}</option>)}
+        {noVenueList.map((event, i) => <option key={i.toString()}>{event}</option>)}
       </select>
       <button type="submit">Search</button>
     </form>
