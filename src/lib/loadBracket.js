@@ -8,7 +8,6 @@ export const loadBracket = async (phaseGroupId, pageNum, playerName) => {
       const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
       const targetUrl = `https://api.smash.gg/tournament/${phaseGroupId}`;
       const tailEndUrl = `/event/super-smash-bros-melee/standings?entityType=event&expand[]=entrants&mutations[]=playerData&mutations[]=standingLosses&page=${i}&per_page=100`;
-      
       const getUrl = await fetch(proxyUrl + targetUrl + tailEndUrl);
       const getJson = await getUrl.json();
       const gamerTag = await getJson.items.entities.entrants.map(name => {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { SearchForm } from "./components/ui-form";
-import { searchTournament, testError } from "./lib";
+import { SearchForm, SearchFormTournament } from "./components/ui-form";
+import { searchTournament, testError, getGame } from "./lib";
 
 class App extends Component {
 
@@ -10,7 +10,8 @@ class App extends Component {
     error: "",
     searchTournamentName: "",
     searchPlayer1: "",
-    searchResults: ""
+    searchResults: "",
+    eventList: []
   }
 
   handleInputChange = (evt) => {
@@ -27,17 +28,21 @@ class App extends Component {
     this.setState({ searchResults: [tournamentList] })
   }
 
+  handleTournamentSubmit = async (evt) =>  {
+    evt.preventDefault();
+    const tournament = this.state.searchTournamentName;
+    const getEventList = await getGame(tournament); 
+    this.setState({ eventList: getEventList })
+  }
+
   handleEmptySubmit = (evt) => {
     evt.preventDefault();
-    let getErrorTest = testError(this.state.searchTournamentName, this.state.searchPlayer1)
-    this.setState({ 
-      error: [getErrorTest]
-    })
+    const getErrorTest = testError(this.state.searchTournamentName, this.state.searchPlayer1)
+    this.setState({ error: [getErrorTest] })
   }
 
   render() {
-
-    const submitSearchHandler = this.state.searchTournamentName ? this.handleSearchSubmit : this.handleEmptySubmit
+    const submitSearchHandler = this.state.searchTournamentName ? this.handleSearchSubmit : this.handleEmptySubmit;
     return (
       <div className="App">
         <div className="App-header">
@@ -46,9 +51,14 @@ class App extends Component {
         </div>
         <p className="App-intro">Welcome to Rankings</p>
         <p>{this.state.error}</p>
+        <SearchFormTournament
+          handleInputChange={this.handleInputChange}
+          handleTournamentSubmit={this.handleTournamentSubmit}
+          eventList={this.state.eventList}
+          searchTournamentName={this.state.searchTournamentName}
+        />
         <SearchForm
           handleInputChange={this.handleInputChange}
-          searchTournamentName={this.state.searchTournamentName}
           searchPlayer1={this.state.searchPlayer1}
           handleSubmit={submitSearchHandler}
         />

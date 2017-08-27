@@ -2,39 +2,22 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export const SearchForm = (props) => (
-  <form
-    id="tournamentSearch" 
-    onSubmit={props.handleSubmit}
-  >
-    <div className="inputgrp">
-      <label htmlFor="search">Tournament</label>
-      <input
-        type="text"
-        name="searchTournamentName"
-        id="search"
-        onChange={props.handleInputChange}
-        value={props.searchTournamentName}
-      />
-    </div>
+  <form id="tournamentSearch" onSubmit={props.handleSubmit}>
     <div className="inputgrg">
       <label htmlFor="player1Results">Player 1
-        <input type="text"
+        <input 
+          type="text"
           name="searchPlayer1"
           onChange={props.handleInputChange}
           value={props.searchPlayer1}
         />
       </label>
     </div>
-    <button
-       type="submit"
-    >
-      Search
-    </button>
+    <button type="submit">Search</button>
   </form>
 );
 
 SearchForm.propTypes = {
-  searchTournamentName: PropTypes.string.isRequired,
   searchPlayer1: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired
