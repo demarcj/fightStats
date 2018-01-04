@@ -15,14 +15,11 @@ export const loadBracket = async (phaseGroupId, pageNum, playerName) => {
       }) 
       .filter(obj => checkPlayerName(obj) === checkPlayerName(playerName));
 
-      const result = (gamerTag.length === 0)
-        ? "Player Not Found!"
-        : gamerTag[0]
-    
+      const result = gamerTag.length === 0 ? "Player Not Found!" : gamerTag[0]
       return result;
       });
     return getTournamentPlayerList[0];
   }
-  return getPlayerName().then(result =>  result);
+  return getPlayerName();
 }
   

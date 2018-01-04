@@ -1,3 +1,4 @@
+
 export const testError = (tournament, player1) => {
   let strError = ""
   if(tournament === "" && player1 === ""){

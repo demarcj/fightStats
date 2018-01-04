@@ -46,10 +46,9 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to Rankings</h2>
+          <h2>Welcome to Fight Money</h2>
         </div>
-        <p className="App-intro">Welcome to Rankings</p>
+        <p className="App-intro">Start Your Betting</p>
         <p>{this.state.error}</p>
         <SearchFormTournament
           handleInputChange={this.handleInputChange}
