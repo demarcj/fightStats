@@ -11,7 +11,7 @@ class App extends Component {
     searchTournamentName: "",
     searchPlayer1: "",
     searchResults: "",
-    eventList: ["", "Games"]
+    eventList: ["Select Game"]
   }
 
   handleInputChange = (evt) => {
@@ -48,7 +48,7 @@ class App extends Component {
         <div className="App-header">
           <h2>Welcome to Fight Money</h2>
         </div>
-        <p className="App-intro">Start Your Betting</p>
+        <p className="App-intro">Select the Tournament</p>
         <p>{this.state.error}</p>
         <SearchFormTournament
           handleInputChange={this.handleInputChange}

@@ -9,6 +9,7 @@ export const getGame = async (phaseGroupId) => {
     const getJson = await getUrl.json();
     const gameTypeId = await Object.values(getJson.entities.event);
     const gameType = await gameTypeId.map(game => game.name);
+    gameType.unshift("Select Game");
     return gameType;
   }
   return getPlayerName();
