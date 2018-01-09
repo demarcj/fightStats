@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { SearchForm, SearchFormTournament } from "./components/ui-form";
-import { searchTournament, testError, getGame } from "./lib";
+import { searchTournament, testError, getGame, getGameName } from "./lib";
 
 class App extends Component {
 
@@ -11,6 +11,7 @@ class App extends Component {
     searchTournamentName: "",
     searchPlayer1: "",
     searchResults: "",
+    game: "",
     eventList: ["Select Game"]
   }
 
@@ -24,7 +25,9 @@ class App extends Component {
     evt.preventDefault();
     const tournament = this.state.searchTournamentName;
     const player1 = this.state.searchPlayer1;
-    const tournamentList = await searchTournament(tournament, player1); 
+    const eventArr = this.state.eventList;
+    const gameName = await getGameName(tournament, eventArr);
+    const tournamentList = await searchTournament(tournament, player1, gameName); 
     this.setState({ searchResults: tournamentList })
   }
 
@@ -55,6 +58,7 @@ class App extends Component {
           handleTournamentSubmit={this.handleTournamentSubmit}
           eventList={this.state.eventList}
           searchTournamentName={this.state.searchTournamentName}
+          game = {this.state.game}
         />
         <SearchForm
           handleInputChange={this.handleInputChange}
