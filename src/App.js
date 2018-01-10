@@ -25,7 +25,7 @@ class App extends Component {
     evt.preventDefault();
     const tournament = this.state.searchTournamentName;
     const player1 = this.state.searchPlayer1;
-    const eventArr = this.state.eventList;
+    const eventArr = this.state.game;
     const gameName = await getGameName(tournament, eventArr);
     const tournamentList = await searchTournament(tournament, player1, gameName); 
     this.setState({ searchResults: tournamentList })
