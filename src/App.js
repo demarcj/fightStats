@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { SearchForm, SearchFormTournament } from "./components/ui-form";
 import { searchTournament, testError, getGame, getGameName, checkGame } from "./lib";
@@ -29,7 +28,7 @@ class App extends Component {
     const selectedGame = checkGame(eventArr, this.state.game);    
     const gameName = await getGameName(tournament, selectedGame);
     const tournamentList = await searchTournament(tournament, player1, gameName);
-    const foundMessage = `${tournamentList} did play in ${tournament.toLocaleUpperCase()}`;
+    const foundMessage = `${tournamentList} did play in ${tournament.toLocaleUpperCase()} for ${selectedGame}`;
     const message = tournamentList === "Player Not Found!" ? "Player Not Found!" : foundMessage; 
     this.setState({ searchResults: message });
   }
@@ -52,7 +51,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Welcome to Fight Money</h2>
+          <h2>Welcome to Fighter Stats</h2>
         </div>
         <p className="App-intro">Select the Tournament</p>
         <p>{this.state.error}</p>
