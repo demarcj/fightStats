@@ -6,3 +6,4 @@ export { checkPlayerName } from "./checkPlayerName";
 export { checkTournamentName } from "./checkTournamentName";
 export { getGame } from "./getGameEvent";
 export { getGameName } from "./getGameName";
+export { checkGame } from "./checkGame";

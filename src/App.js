@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { SearchForm, SearchFormTournament } from "./components/ui-form";
-import { searchTournament, testError, getGame, getGameName } from "./lib";
+import { searchTournament, testError, getGame, getGameName, checkGame } from "./lib";
 
 class App extends Component {
 
@@ -25,10 +25,13 @@ class App extends Component {
     evt.preventDefault();
     const tournament = this.state.searchTournamentName;
     const player1 = this.state.searchPlayer1;
-    const eventArr = this.state.game;
-    const gameName = await getGameName(tournament, eventArr);
-    const tournamentList = await searchTournament(tournament, player1, gameName); 
-    this.setState({ searchResults: tournamentList })
+    const eventArr = this.state.eventList;
+    const selectedGame = checkGame(eventArr, this.state.game);    
+    const gameName = await getGameName(tournament, selectedGame);
+    const tournamentList = await searchTournament(tournament, player1, gameName);
+    const foundMessage = `${tournamentList} did play in ${tournament.toLocaleUpperCase()}`;
+    const message = tournamentList === "Player Not Found!" ? "Player Not Found!" : foundMessage; 
+    this.setState({ searchResults: message });
   }
 
   handleTournamentSubmit = async (evt) =>  {

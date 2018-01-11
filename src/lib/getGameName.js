@@ -10,7 +10,6 @@ export const getGameName = async (tournamentName, gameName) => {
     const getJson = await getUrl.json();
     const gameTypeId = await Object.values(getJson.entities.event);
     const gameIndex = await gameTypeId.filter( i => i.slug === `tournament/${tournament}/event/${game}` );
-    console.log(`I'm the error`, gameIndex[0].slug);
     return gameIndex[0].slug;
   }
   return fetchGameName();
