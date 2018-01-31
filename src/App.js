@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { SearchForm, SearchFormTournament } from "./components/ui-form";
-import { searchTournament, testError, getGame } from "./lib";
+import { searchTournament, testError, getGame, getGameName, checkGame } from "./lib";
 
 class App extends Component {
 
@@ -11,6 +10,8 @@ class App extends Component {
     searchTournamentName: "",
     searchPlayer1: "",
     searchResults: "",
+    game: "",
+    helperMessage: "",
     eventList: ["Select Game"]
   }
 
@@ -24,8 +25,15 @@ class App extends Component {
     evt.preventDefault();
     const tournament = this.state.searchTournamentName;
     const player1 = this.state.searchPlayer1;
-    const tournamentList = await searchTournament(tournament, player1); 
-    this.setState({ searchResults: tournamentList })
+    const eventArr = this.state.eventList;
+    const selectedGame = checkGame(eventArr, this.state.game);    
+    const gameName = await getGameName(tournament, selectedGame);
+    const tournamentList = await searchTournament(tournament, player1, gameName);
+    const foundMessage = `${tournamentList} did play in ${tournament.toLocaleUpperCase()} for ${selectedGame}`;
+    const notFoundMessage = `Player Not Found! To check for players from this tournament check `; 
+    const message = tournamentList === "Player Not Found!" ? `${notFoundMessage}` : foundMessage; 
+    const helperLink = tournamentList === "Player Not Found!" ? "smash.gg" : "";
+    this.setState({ searchResults: message, helperMessage: helperLink });
   }
 
   handleTournamentSubmit = async (evt) =>  {
@@ -46,7 +54,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Welcome to Fight Money</h2>
+          <h2>Welcome to Fighter Stats</h2>
         </div>
         <p className="App-intro">Select the Tournament</p>
         <p>{this.state.error}</p>
@@ -55,13 +63,14 @@ class App extends Component {
           handleTournamentSubmit={this.handleTournamentSubmit}
           eventList={this.state.eventList}
           searchTournamentName={this.state.searchTournamentName}
+          game = {this.state.game}
         />
         <SearchForm
           handleInputChange={this.handleInputChange}
           searchPlayer1={this.state.searchPlayer1}
           handleSubmit={submitSearchHandler}
         />
-        <p>{this.state.searchResults}</p>
+        <p>{this.state.searchResults} <a href="https://smash.gg">{this.state.helperMessage}</a></p>
       </div>
     );
   }

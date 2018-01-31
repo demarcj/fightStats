@@ -12,7 +12,7 @@ export const SearchFormTournament = (props) => {
         onChange={props.handleInputChange}
         value={props.searchTournamentName}
       />
-      <select>
+      <select name="game" onChange={props.handleInputChange} value={props.game}>
         {props.eventList.map((event, i) => <option key={i.toString()}>{event}</option>)}
       </select>
       <button type="submit">Search</button>
