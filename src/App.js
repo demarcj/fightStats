@@ -11,6 +11,7 @@ class App extends Component {
     searchPlayer1: "",
     searchResults: "",
     game: "",
+    helperMessage: "",
     eventList: ["Select Game"]
   }
 
@@ -29,8 +30,10 @@ class App extends Component {
     const gameName = await getGameName(tournament, selectedGame);
     const tournamentList = await searchTournament(tournament, player1, gameName);
     const foundMessage = `${tournamentList} did play in ${tournament.toLocaleUpperCase()} for ${selectedGame}`;
-    const message = tournamentList === "Player Not Found!" ? "Player Not Found!" : foundMessage; 
-    this.setState({ searchResults: message });
+    const notFoundMessage = `Player Not Found! To check for players from this tournament check `; 
+    const message = tournamentList === "Player Not Found!" ? `${notFoundMessage}` : foundMessage; 
+    const helperLink = tournamentList === "Player Not Found!" ? "smash.gg" : "";
+    this.setState({ searchResults: message, helperMessage: helperLink });
   }
 
   handleTournamentSubmit = async (evt) =>  {
@@ -67,7 +70,7 @@ class App extends Component {
           searchPlayer1={this.state.searchPlayer1}
           handleSubmit={submitSearchHandler}
         />
-        <p>{this.state.searchResults}</p>
+        <p>{this.state.searchResults} <a href="https://smash.gg">{this.state.helperMessage}</a></p>
       </div>
     );
   }
