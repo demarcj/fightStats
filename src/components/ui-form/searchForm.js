@@ -12,8 +12,8 @@ export const SearchForm = (props) => (
           value={props.searchPlayer1}
         />
       </label>
+      <button type="submit">Search Player</button>
     </div>
-    <button type="submit">Search</button>
   </form>
 );
 

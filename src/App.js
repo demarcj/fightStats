@@ -28,7 +28,7 @@ class App extends Component {
     const eventArr = this.state.eventList;
     const selectedGame = checkGame(eventArr, this.state.game);    
     const gameName = await getGameName(tournament, selectedGame);
-    const tournamentList = await searchTournament(tournament, player1, gameName);
+    const tournamentList = await searchTournament(tournament, player1, selectedGame);
     const foundMessage = `${tournamentList} did play in ${tournament.toLocaleUpperCase()} for ${selectedGame}`;
     const notFoundMessage = `Player Not Found! To check for players from this tournament check `; 
     const message = tournamentList === "Player Not Found!" ? `${notFoundMessage}` : foundMessage; 
@@ -70,6 +70,9 @@ class App extends Component {
           searchPlayer1={this.state.searchPlayer1}
           handleSubmit={submitSearchHandler}
         />
+        <p>To test the form go to smash.gg and copy and paste the name of the tournament in the first</p>
+        <p>Select a game</p>
+        <p>Type a player's name in the Player field to see if that person attended the tournament</p>
         <p>{this.state.searchResults} <a href="https://smash.gg">{this.state.helperMessage}</a></p>
       </div>
     );
