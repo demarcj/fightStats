@@ -1,14 +1,14 @@
-import { checkTournamentName } from "./index";
+import { check_tournament_name } from "./index";
 
-export const getGame = async (phaseGroupId) => {
-    let tournament = checkTournamentName(phaseGroupId);
-    const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
-    const targetUrl = `https://api.smash.gg/tournament/${tournament}?expand[]=event`;
-    const getUrl = await fetch(proxyUrl + targetUrl);
-    const getJson = await getUrl.json();
-    const gameTypeId = await Object.values(getJson.entities.event);
-    const gameType = gameTypeId.map(game => game.name);
-    gameType.unshift("Select Game");
-    return gameType;
+export const getGame = async (phase_group_id) => {
+    let tournament = check_tournament_name(phase_group_id);
+    const proxy_url = `https://cors-anywhere.herokuapp.com/`;
+    const target_url = `https://api.smash.gg/tournament/${tournament}?expand[]=event`;
+    const get_url = await fetch(proxy_url + target_url);
+    const get_json = await get_url.json();
+    const game_type_id = await Object.values(get_json.entities.event);
+    const game_type = game_type_id.map(game => game.name);
+    game_type.unshift("Select Game");
+    return game_type; 
 }
   

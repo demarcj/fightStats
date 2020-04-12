@@ -1,9 +1,9 @@
-export { loadBracket } from "./loadBracket";
-export { searchTournament } from "./searchTournament";
-export { loadTournament } from "./tournamentService";
-export { testError } from "./error";
+export { load_bracket } from "./loadBracket";
+export { search_tournament } from "./searchTournament";
+export { load_tournament } from "./tournamentService";
+export { test_error } from "./error";
 export { checkPlayerName } from "./checkPlayerName";
-export { checkTournamentName } from "./checkTournamentName";
+export { check_tournament_name } from "./checkTournamentName";
 export { getGame } from "./getGameEvent";
 export { getGameName } from "./getGameName";
-export { checkGame } from "./checkGame";
+export { checkGame } from "./checkGame"; 

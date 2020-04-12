@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { SearchForm, SearchFormTournament } from "./components/ui-form";
-import { searchTournament, testError, getGame, getGameName, checkGame } from "./lib";
+import { search_tournament, test_error, getGame, getGameName, checkGame } from "./lib";
 
 class App extends Component {
 
@@ -27,8 +27,8 @@ class App extends Component {
     const player1 = this.state.searchPlayer1;
     const eventArr = this.state.eventList;
     const selectedGame = checkGame(eventArr, this.state.game);    
-    const gameName = await getGameName(tournament, selectedGame);
-    const tournamentList = await searchTournament(tournament, player1, selectedGame);
+    // const gameName = await getGameName(tournament, selectedGame);
+    const tournamentList = await search_tournament(tournament, player1, selectedGame);
     const foundMessage = `${tournamentList} did play in ${tournament.toLocaleUpperCase()} for ${selectedGame}`;
     const notFoundMessage = `Player Not Found! To check for players from this tournament check `; 
     const message = tournamentList === "Player Not Found!" ? `${notFoundMessage}` : foundMessage; 
@@ -45,7 +45,7 @@ class App extends Component {
 
   handleEmptySubmit = (evt) => {
     evt.preventDefault();
-    const getErrorTest = testError(this.state.searchTournamentName, this.state.searchPlayer1)
+    const getErrorTest = test_error(this.state.searchTournamentName, this.state.searchPlayer1)
     this.setState({ error: getErrorTest })
   }
 
@@ -70,10 +70,12 @@ class App extends Component {
           searchPlayer1={this.state.searchPlayer1}
           handleSubmit={submitSearchHandler}
         />
-        <p>To test the form go to smash.gg and copy and paste the name of the tournament in the first</p>
-        <p>Select a game</p>
-        <p>Type a player's name in the Player field to see if that person attended the tournament</p>
-        <p>{this.state.searchResults} <a href="https://smash.gg">{this.state.helperMessage}</a></p>
+        <div class="text_container">
+          <p className="body_text">To test the form go to <a href="https://smash.gg">smash.gg</a> and copy and paste the name of the tournament in the first</p>
+          <p className="body_text">Select a game</p>
+          <p className="body_text">Type a player's name in the Player field to see if that person attended the tournament</p>
+          <p className="body_text">{this.state.searchResults} <a href="https://smash.gg">{this.state.helperMessage}</a></p>
+        </div>{/* text_container */}
       </div>
     );
   }

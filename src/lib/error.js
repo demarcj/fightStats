@@ -1,9 +1,4 @@
-export const testError = (tournament, player1) => {
-  let strError = ""
-  if(tournament === "" && player1 === ""){
-    strError = "All fields are empty";
-  } else if(tournament === ""){
-    strError = "The tournament field is empty";
-  } 
-  return strError;
-}
+export const test_error = (tournament, player1) => (
+  tournament === `` && player1 === `` ? `All fields are empty` :
+  tournament === `` ? `The tournament field is empty` : ``  
+);

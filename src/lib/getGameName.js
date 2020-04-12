@@ -1,8 +1,8 @@
-import { checkTournamentName } from "./index";
+import { check_tournament_name } from "./index";
 
 export const getGameName = async (tournamentName, gameName) => {
-    const tournament = checkTournamentName(tournamentName);
-    const game = checkTournamentName(gameName);
+    const tournament = check_tournament_name(tournamentName);
+    const game = check_tournament_name(gameName);
     const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
     const targetUrl = `https://api.smash.gg/tournament/${tournament}?expand[]=entrants&mutations[]=playerData`;
     const getUrl = await fetch(proxyUrl + targetUrl);
