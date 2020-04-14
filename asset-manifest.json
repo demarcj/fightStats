@@ -1,6 +1,22 @@
 {
-  "main.css": "static/css/main.c2157549.css",
-  "main.css.map": "static/css/main.c2157549.css.map",
-  "main.js": "static/js/main.7bc383dd.js",
-  "main.js.map": "static/js/main.7bc383dd.js.map"
+  "files": {
+    "main.css": "/fightStats/static/css/main.5e976c44.chunk.css",
+    "main.js": "/fightStats/static/js/main.8d92f078.chunk.js",
+    "main.js.map": "/fightStats/static/js/main.8d92f078.chunk.js.map",
+    "runtime-main.js": "/fightStats/static/js/runtime-main.ca34aa37.js",
+    "runtime-main.js.map": "/fightStats/static/js/runtime-main.ca34aa37.js.map",
+    "static/js/2.eb5b25ab.chunk.js": "/fightStats/static/js/2.eb5b25ab.chunk.js",
+    "static/js/2.eb5b25ab.chunk.js.map": "/fightStats/static/js/2.eb5b25ab.chunk.js.map",
+    "index.html": "/fightStats/index.html",
+    "precache-manifest.a78c0d730593b875b9ace81884634616.js": "/fightStats/precache-manifest.a78c0d730593b875b9ace81884634616.js",
+    "service-worker.js": "/fightStats/service-worker.js",
+    "static/css/main.5e976c44.chunk.css.map": "/fightStats/static/css/main.5e976c44.chunk.css.map",
+    "static/js/2.eb5b25ab.chunk.js.LICENSE.txt": "/fightStats/static/js/2.eb5b25ab.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ca34aa37.js",
+    "static/js/2.eb5b25ab.chunk.js",
+    "static/css/main.5e976c44.chunk.css",
+    "static/js/main.8d92f078.chunk.js"
+  ]
 }
