@@ -1,0 +1,53 @@
+:root{
+  --section_padding: 15px 0;
+  --black: #222222;
+}
+
+%container{
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+}
+
+html, body, #root{
+  min-height: 100vh;
+}
+
+#root{
+  display: grid;
+  grid-auto-rows: auto 1fr auto;
+}
+
+.App {
+  text-align: center;
+}
+
+header, footer{
+  padding: var(--section_padding);
+  background: var(--black);
+}
+
+.App-header {
+  color: white;
+  margin: 0;
+}
+
+header, main, footer{
+  @extend %container;
+}
+
+.inputgrp {
+  display: block;
+  margin: 10px 0;
+}
+
+input{
+  margin: 0 5px;
+}
+
+footer{
+  margin-top: auto;
+}
+
+.copyright{
+  color: #ffffff;
+}
