@@ -1,21 +1,18 @@
 import React from "react";
-// import PropTypes from "prop-types";
 
-export const SearchFormTournament = (props) => {
-  return (
-    <form onSubmit={props.handleTournamentSubmit}>
-      <label htmlFor="">Tournament</label>
-      <input
-        type="text"
-        name="searchTournamentName"
-        id="search"
-        onChange={props.handleInputChange}
-        value={props.searchTournamentName}
-      />
-      <select name="game" onChange={props.handleInputChange} value={props.game}>
-        {props.eventList.map((event, i) => <option key={i.toString()}>{event}</option>)}
-      </select>
-      <button type="submit">Search</button>
-    </form>
-  );
-}
+export const SearchFormTournament = props => (
+  <form onSubmit={props.tournament_submit}>
+    <label htmlFor="">Tournament</label>
+    <input
+      type="text"
+      name="tournament"
+      id="search"
+      onChange={props.input_change}
+      value={props.tournament}
+    />
+    <select name="game" onChange={props.input_change} value={props.game}>
+      {props.event_list.map((event, i) => <option key={i.toString()}>{event}</option>)}
+    </select>
+    <button type="submit">Search</button>
+  </form>
+);

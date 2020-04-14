@@ -1,79 +1,77 @@
 import React, { useState } from 'react';
 import './App.css';
 import { SearchForm, SearchFormTournament } from "./components/ui-form";
-import { search_tournament, test_error, getGame, checkGame } from "./lib";
+import { search_tournament, test_error, get_game, check_game } from "./lib";
 
-function App () {
+export default function App () {
   const [error, set_error] = useState("");
-  const [search_tournament_name, set_search_tournament_name] = useState("");
-  const [search_player1, set_search_player1] = useState("");
-  const [search_results, set_search_results] = useState("");
+  const [tournament, set_tournament] = useState("");
+  const [player1, set_player1] = useState("");
+  const [results, set_results] = useState("");
   const [game, set_game] = useState("");
   const [helper_message, set_helper_message] = useState("");
   const [event_list, set_event_list] = useState(["Select Game"]);
 
-  const handleInputChange = (evt) => {
-    evt.preventDefault();
-    const name = evt.target.name;
-    set_search_tournament_name({ [name]: evt.target.value })
+  const input_change = e => {
+    e.preventDefault();
+    if(e.target.name === "tournament"){
+      set_tournament(e.target.value);
+    } else if(e.target.name === "game") {
+      set_game(e.target.value);
+    } else {
+      set_player1(e.target.value);
+    }
   }
 
-  const handleSearchSubmit = async evt =>  {
-    evt.preventDefault();
-    const tournament = search_tournament_name;
-    const player1 = search_player1;
-    const eventArr = event_list;
-    const selectedGame = checkGame(eventArr, game);    
-    const tournamentList = await search_tournament(tournament, player1, selectedGame);
-    const foundMessage = `${tournamentList} did play in ${tournament.toLocaleUpperCase()} for ${selectedGame}`;
-    const notFoundMessage = `Player Not Found! To check for players from this tournament check `; 
-    const message = tournamentList === "Player Not Found!" ? `${notFoundMessage}` : foundMessage; 
-    const helperLink = tournamentList === "Player Not Found!" ? "smash.gg" : "";
-    set_search_results({search_results: message}) 
-    set_helper_message({helper_message: helperLink });
+  const search_submit = async e =>  {
+    e.preventDefault();
+    const selected_game = check_game(game);    
+    const tournament_list = await search_tournament(tournament, player1, selected_game);
+    const found_message = `${tournament_list} did play in ${tournament.toUpperCase()} for ${selected_game}`;
+    const not_found_message = `Player Not Found! To check for players from this tournament check.`; 
+    const message = tournament_list === "Player Not Found!" ? `${not_found_message}` : found_message; 
+    const helper_link = tournament_list === "Player Not Found!" ? "smash.gg" : "";
+    set_results(message);
+    set_helper_message(helper_link);
   }
 
-  const handleTournamentSubmit = async evt =>  {
-    evt.preventDefault();
-    const tournament = search_tournament_name;
-    const getEventList = await getGame(tournament); 
-    set_event_list({ event_list: getEventList })
+  const tournament_submit = async e =>  {
+    e.preventDefault();
+    const getEventList = await get_game(tournament); 
+    set_event_list(getEventList);
   }
 
-  const handleEmptySubmit = evt => {
-    evt.preventDefault();
-    const get_error_test = test_error(search_tournament_name, search_player1)
-    set_error({ error: get_error_test })
+  const empty_submit = e => {
+    e.preventDefault();
+    set_error(test_error(tournament, player1));
   }
 
-  const submitSearchHandler = search_tournament_name ? handleSearchSubmit : handleEmptySubmit;
+  const submit_search = tournament ? search_submit : empty_submit;
   return (
-    <div className="App">
+    <>
       <div className="App-header">
         <h2>Welcome to Fighter Stats</h2>
       </div>
       <p className="App-intro">Select the Tournament</p>
       <p>{error}</p>
       <SearchFormTournament
-        handleInputChange={handleInputChange}
-        handleTournamentSubmit={handleTournamentSubmit}
+        input_change={input_change}
+        tournament_submit={tournament_submit}
         event_list={event_list}
-        search_tournament_name={search_tournament_name}
-        game = {game}
+        tournament={tournament}
+        game={game} 
       />
       <SearchForm
-        handleInputChange={handleInputChange}
-        search_player1={search_player1}
-        handleSubmit={submitSearchHandler}
+        input_change={input_change}
+        player1={player1}
+        handle_submit={submit_search}
       />
-      <div class="text_container">
+      <div className="text_container">
         <p className="body_text">To test the form go to <a href="https://smash.gg">smash.gg</a> and copy and paste the name of the tournament in the first</p>
         <p className="body_text">Select a game</p>
         <p className="body_text">Type a player's name in the Player field to see if that person attended the tournament</p>
-        <p className="body_text">{search_results} <a href="https://smash.gg">{helper_message}</a></p>
+        <p className="body_text">{results} <a href="https://smash.gg">{helper_message}</a></p>
       </div>
-    </div>
+    </>
   );
 }
-
-export default App;

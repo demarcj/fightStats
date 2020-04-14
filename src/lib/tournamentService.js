@@ -1,8 +1,7 @@
-export const load_tournament = async (phaseGroupId, gameName) => {
-  const targetUrl = `https://cors-anywhere.herokuapp.com/https://api.smash.gg/tournament/${phaseGroupId}`;
-  const tailEndUrl = `/event/${gameName.split(" ").join("-")}/standings?entityType=event&expand[]=entrants&mutations[]=playerData`
-  console.log(targetUrl + tailEndUrl);
-  const getFetch = await fetch(targetUrl + tailEndUrl);
-  const getJson = await getFetch.json();
-  return getJson;
+export const load_tournament = async (phase_group_id, game_name) => {
+  const target_url = `https://cors-anywhere.herokuapp.com/https://api.smash.gg/tournament/${phase_group_id}`;
+  const tail_end_url = `/event/${game_name.split(" ").join("-")}/standings?entityType=event&expand[]=entrants&mutations[]=playerData`
+  const get_fetch = await fetch(target_url + tail_end_url);
+  const get_json = await get_fetch.json();
+  return get_json;
 }

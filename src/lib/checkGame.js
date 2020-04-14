@@ -1,3 +1,1 @@
-export const checkGame = (eventArr, game) => {
-  return game === "" || game === "Select Game" ? undefined : game;
-}
+export const check_game = game => game === "" || game === "Select Game" ? undefined : game;

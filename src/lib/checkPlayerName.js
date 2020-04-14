@@ -1,1 +1,1 @@
-export const checkPlayerName = (name) => name.toLowerCase().split(" ").join("");
+export const check_player_name = name => name.toLowerCase().split(" ").join("");
