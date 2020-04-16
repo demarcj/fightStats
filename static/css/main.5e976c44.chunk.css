@@ -1,2 +1,0 @@
-body{margin:0;padding:0;font-family:sans-serif}:root{--section_padding:15px 0;--black:#222}footer,header,main{display:grid;grid-template-columns:1fr 5fr 1fr}#root,body,html{min-height:100vh}#root{display:grid;grid-auto-rows:auto 1fr auto}.App{text-align:center}footer,header{padding:15px 0;padding:var(--section_padding);background:#222;background:var(--black)}.App-header{color:#fff;margin:0}.inputgrp{display:block;margin:10px 0}input{margin:0 5px}footer{margin-top:auto}.copyright{color:#fff}
-/*# sourceMappingURL=main.5e976c44.chunk.css.map */
