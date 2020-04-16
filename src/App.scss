@@ -3,11 +3,6 @@
   --black: #222222;
 }
 
-%container{
-  display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
-}
-
 html, body, #root{
   min-height: 100vh;
 }
@@ -32,7 +27,25 @@ header, footer{
 }
 
 header, main, footer{
-  @extend %container;
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+}
+
+.aside_nav{
+  padding-left: 15px;
+}
+
+.nav_list{
+  list-style: none;
+  padding: 0;
+}
+
+.nav_list_link{
+  color: red;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-bottom: 10px;
+  display: block;
 }
 
 .inputgrp {
@@ -50,4 +63,17 @@ footer{
 
 .copyright{
   color: #ffffff;
+}
+
+@media only screen and (max-width:991px){
+  header, main, footer{
+    grid-template-columns:1fr;
+  }
+  main{
+    padding:15px;
+  }
+  .nav_list_item{
+    display: inline-block;
+    padding-right: 10px;
+  }
 }
