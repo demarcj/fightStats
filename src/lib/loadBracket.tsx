@@ -1,6 +1,6 @@
 import { check_player_name } from "./index";
 
-export const load_bracket = async (page_num, player_name, tournament, game) => {
+export const load_bracket = async (page_num:string, player_name:string, tournament:string, game:string) => {
   const get_player_name = async () => {
     const tournament_player_list = Array(page_num).fill(undefined);
     const get_tournament_player_list = tournament_player_list.map(async (url, i) => {

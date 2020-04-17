@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.scss';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { SearchForm, SearchFormTournament, Footer, Header, Help } from "./components";
+import { SearchForm, SearchFormTournament, Footer, Header, Help, Info } from "./components";
 import { search_tournament, test_error, get_game, check_game } from "./lib";
 
 export default function App () {
@@ -52,22 +52,23 @@ export default function App () {
     <Router>
       <Header />
       <main className="main">
-        <aside className="aside_nav">
-          <nav className="nav_link">
-            <ul className="nav_list">
-              <li className="nav_list_item">
-                <Link className="nav_list_link" to="/">Home</Link>
-              </li>
-              <li className="nav_list_item">
-                <Link className="nav_list_link" to="/help">Help</Link>
-              </li>
-            </ul>
-          </nav>
-        </aside>
+        <nav className="nav_link">
+          <ul className="nav_list">
+            <li className="nav_list_item">
+              <Link className="nav_list_link" to="/">Home</Link>
+            </li>
+            <li className="nav_list_item">
+              <Link className="nav_list_link" to="/help">Help</Link>
+            </li>
+          </ul>
+        </nav>
         <section>
         <Switch>        
           <Route path="/help">
-            <Help />
+            <Help
+              results={results}
+              helper_message={helper_message}
+            />
           </Route>
           <Route path="/">
             <h2 className="App-intro">Select the Tournament</h2>
@@ -87,7 +88,7 @@ export default function App () {
           </Route>
         </Switch>
         </section>
-        <aside></aside>
+        <Info />
       </main>
       <Footer />
     </Router>

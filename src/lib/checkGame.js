@@ -1,1 +1,0 @@
-export const check_game = game => game === "" || game === "Select Game" ? undefined : game;
