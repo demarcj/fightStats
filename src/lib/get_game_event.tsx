@@ -7,7 +7,7 @@ export const get_game = async (phase_group_id:string) => {
     const get_url = await fetch(proxy_url + target_url);
     const get_json = await get_url.json();
     const game_type_id = await Object.values(get_json.entities.event);
-    const game_type = game_type_id.map(game => game.name);
+    const game_type = game_type_id.map((game:any) => game.name);
     game_type.unshift("Select Game");
     return game_type; 
 }

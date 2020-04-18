@@ -1,9 +1,9 @@
-export { load_bracket } from "./loadBracket";
-export { search_tournament } from "./searchTournament";
-export { load_tournament } from "./tournamentService";
+export { load_bracket } from "./load_bracket";
+export { search_tournament } from "./search_tournament";
+export { load_tournament } from "./load_tournament";
 export { test_error } from "./error";
-export { check_player_name } from "./checkPlayerName";
-export { check_tournament_name } from "./checkTournamentName";
-export { get_game } from "./getGameEvent";
-export { get_game_name } from "./getGameName";
-export { check_game } from "./checkGame"; 
+export { check_player_name } from "./check_player_name";
+export { check_tournament_name } from "./check_tournament_name";
+export { get_game } from "./get_game_event";
+export { get_game_name } from "./get_game_name";
+export { check_game } from "./check_game"; 
