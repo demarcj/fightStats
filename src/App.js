@@ -65,10 +65,10 @@ export default function App() {
             </li>
           </ul>
         </nav>
-        <section>
+        <section className="center_section">
           <Switch>
             <Route path="/help">
-              <Help results={results} helper_message={helper_message} />
+              <Help />
             </Route>
             <Route path="/about">
               <About />
@@ -90,7 +90,7 @@ export default function App() {
             </Route>
           </Switch>
         </section>
-        <Info />
+        <Info results={results} helper_message={helper_message} />
       </main>
       <Footer />
     </Router>

@@ -2,7 +2,7 @@
 
 Look at the stats of your favorite fgc player here!
 
-## Version 0.6.0
+## Version 0.6.1
 
 Can search for tournament 
 

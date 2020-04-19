@@ -1,10 +1,17 @@
 :root{
   --section_padding: 15px 0;
   --black: #222222;
+  --padding_std: 15px;
 }
 
 html, body, #root{
   min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 }
 
 #root{
@@ -26,58 +33,78 @@ header, footer{
   margin: 0;
 }
 
-header, main, footer{
+header, main{
   display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows:auto 1fr auto;
 }
 
 label{
   display: block;
 }
 
-.nav_link{
-  padding-left: 15px;
-}
+// .nav_link{
+//   padding-left: 15px;
+// }
 
 .nav_list{
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .nav_list_link{
-  color: red;
   text-transform: uppercase;
   font-weight: bold;
-  padding-bottom: 10px;
+  padding: 10px 10px 10px var(--padding_std);
   display: block;
+  text-decoration: none;
+  color:var(--black)
+}
+
+.nav_list_link.active{
+  color:red;
+  text-decoration: underline;
+}
+
+.nav_list_link:hover{
+  background-color: var(--black);
+  color: white;
+  text-decoration: underline;
+}
+
+.center_section{
+  padding:var(--padding_std);
 }
 
 .game_form{
   display: block;
 }
 
-.inputgrp {
-  display: block;
-  margin: 10px 0;
+.stats_aside{
+  padding:var(--padding_std);
 }
 
 footer{
   margin-top: auto;
+  padding:var(--padding_std);
 }
 
 .copyright{
   color: #ffffff;
 }
 
-@media only screen and (max-width:991px){
-  header, main, footer{
+@media (max-width:991px){
+  header, main{
     grid-template-columns:1fr;
   }
-  main{
-    padding:15px;
+  header{
+    padding:var(--padding_std);
   }
   .nav_list_item{
     display: inline-block;
-    padding-right: 10px;
+  }
+  .nav_list_link{
+    padding:var(--padding_std);
   }
 }
