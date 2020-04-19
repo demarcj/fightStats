@@ -1,5 +1,5 @@
-export { SearchForm } from "./player_form";
-export { SearchFormTournament } from "./tournament_form";
+export { PlayerForm } from "./player_form";
+export { TournamentForm } from "./tournament_form";
 export { Header } from "./header"
 export { Footer } from "./footer"
 export { Help } from "./help"

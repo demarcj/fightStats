@@ -1,15 +1,15 @@
 import React from "react";
 
-export const SearchForm = props => (
-  <form id="tournamentSearch" onSubmit={props.handle_submit}>
+export const PlayerForm = props => (
+  <form id="tournamentSearch" onSubmit={props.submit_search}>
     <div className="inputgrg">
-      <label htmlFor="player1">Player 1 </label>
+      <label htmlFor="player">Player</label>
         <input 
           type="text"
-          name="player1"
-          id="player1"
+          name="player"
+          id="player"
           onChange={props.input_change}
-          value={props.player1}
+          value={props.player}
         />
       <button type="submit">Search Player</button>
     </div>

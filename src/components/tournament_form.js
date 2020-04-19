@@ -1,6 +1,6 @@
 import React from "react";
 
-export const SearchFormTournament = props => (
+export const TournamentForm = props => (
   <form onSubmit={props.tournament_submit}>
     <label htmlFor="tournament">Tournament</label>
     <input
