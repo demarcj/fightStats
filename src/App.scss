@@ -31,6 +31,10 @@ header, main, footer{
   grid-template-columns: 1fr 5fr 1fr;
 }
 
+label{
+  display: block;
+}
+
 .nav_link{
   padding-left: 15px;
 }
@@ -48,13 +52,13 @@ header, main, footer{
   display: block;
 }
 
+.game_form{
+  display: block;
+}
+
 .inputgrp {
   display: block;
   margin: 10px 0;
-}
-
-input{
-  margin: 0 5px;
 }
 
 footer{
