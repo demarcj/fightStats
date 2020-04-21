@@ -2,7 +2,7 @@ import React from "react";
 
 export const About = () => (
   <>
-    <h2>About Fight Stat</h2>
+    <h2 className="content_header header">About Fight Stat</h2>
     <p className="body_text">
       Are you tired of the work of searching top 8 results in&nbsp; 
       <a href="https://smash.gg" target="_blank">smash.gg</a>. 

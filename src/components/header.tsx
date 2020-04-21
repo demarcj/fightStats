@@ -3,7 +3,7 @@ import React from "react";
 export const Header = () => (
   <header>
     <aside></aside>
-    <h2 className="App-header">Welcome to Fighter Stats</h2>
+    <h1 className="site_header">Welcome to Fighter Stats</h1>
     <aside></aside>
   </header>
 );
