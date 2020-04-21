@@ -33,3 +33,8 @@ https://demarcj.github.io/fightStats/
 - [ ] Import and set the Eslint setting
 - [ ] Reorganinze the files and folder, and refactor the code to reflect my current style of naming convention 
 - [ ] Change the favicon.ico file
+
+## Technology used
+* React
+* TypeScript
+* Sass

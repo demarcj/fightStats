@@ -1,16 +1,21 @@
 import React, { useState } from "react";
-import "./App.scss";
 import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
-import { PlayerForm, TournamentForm, Footer, Header, Help, Info, About, Home } from "./components";
-import { search_tournament, test_error, get_game, check_game } from "./lib";
+import { Header, Footer } from "./components/static";
+import { Home, PlayerForm, TournamentForm} from "./components/home";
+import { Nav } from "./components/nav/nav";
+import { Help } from "./components/help/help";
+import { Info } from "./components/info/info";
+import { About } from "./components/about/about";
+import { search_tournament, test_error, get_game, check_game } from "./helper_methods";
+import "./App.scss";
+
 
 export default function App() {
   const [error, set_error] = useState("");
   const [tournament, set_tournament] = useState("");
   const [player, set_player] = useState("");
-  const [results, set_results] = useState("");
+  const [results, set_results] = useState(""); 
   const [game, set_game] = useState("");
-  const [helper_message, set_helper_message] = useState("");
   const [event_list, set_event_list] = useState(["Select Game"]);
 
   const input_change = e => {
@@ -33,7 +38,7 @@ export default function App() {
     const message = tournament_list === "Player Not Found!" ? `${not_found_message}` : found_message;
     const helper_link = tournament_list === "Player Not Found!" ? "smash.gg" : "";
     set_results(message);
-    set_helper_message(helper_link);
+    set_error(helper_link);
   };
 
   const tournament_submit = async e => {
@@ -52,29 +57,13 @@ export default function App() {
     <Router>
       <Header />
       <main className="main">
-        <nav className="nav_link">
-          <ul className="nav_list">
-            <li className="nav_list_item">
-              <NavLink className="nav_list_link" to="/fightStat">Home</NavLink>
-            </li>
-            <li className="nav_list_item">
-              <NavLink className="nav_list_link" to="/about">About</NavLink>
-            </li>
-            <li className="nav_list_item">
-              <NavLink className="nav_list_link" to="/help">Help</NavLink>
-            </li>
-          </ul>
-        </nav>
+        <Nav />
         <section className="center_section">
           <Switch>
-            <Route path="/help">
-              <Help />
-            </Route>
-            <Route path="/about">
-              <About />
-            </Route>
+            <Route path="/help" component={ Help } />
+            <Route path="/about" component={ About } />
             <Route path="/">
-              <Home error={error}/>
+              <Home />
               <TournamentForm
                 input_change={input_change}
                 tournament_submit={tournament_submit}
@@ -90,7 +79,7 @@ export default function App() {
             </Route>
           </Switch>
         </section>
-        <Info results={results} helper_message={helper_message} />
+        <Info results={results} error={error} />
       </main>
       <Footer />
     </Router>
