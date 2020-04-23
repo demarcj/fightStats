@@ -1,0 +1,29 @@
+header, footer{
+  padding: var(--section_padding);
+  background: var(--black);
+}
+
+.site_header {
+  color: white;
+  margin: 0;
+  padding-left: var(--padding_std);
+}
+
+footer{
+  margin-top: auto;
+  padding:var(--padding_std);
+}
+
+.copyright{
+  color: #ffffff;
+}
+
+@media (max-width:991px){
+  header{
+    padding:var(--padding_std);
+  }
+  .site_header{
+    text-align: center;
+    padding-left:0;
+  }
+}

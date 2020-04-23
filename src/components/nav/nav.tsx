@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "./nav_style.scss";
 
 export const Nav = () => (
   <nav className="nav_link">
@@ -12,6 +13,9 @@ export const Nav = () => (
       </li>
       <li className="nav_list_item">
         <NavLink className="nav_list_link" to="/help">Help</NavLink>
+      </li>
+      <li>
+        <a className="nav_list_link" href="https://demarcj.github.io/portfolio/" target="_blank">Portfolio</a>
       </li>
     </ul>
   </nav>

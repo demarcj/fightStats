@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import "./static_style.scss";
 
 export const Footer = () => (
   <footer className="footer">

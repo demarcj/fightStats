@@ -1,4 +1,5 @@
 import React from 'react';
+import "./info_style.scss";
 
 export const Info = (props:any) => (
   <aside className="stats_aside">

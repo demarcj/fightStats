@@ -1,4 +1,5 @@
 import React from "react";
+import "./static_style.scss";
 
 export const Header = () => (
   <header>

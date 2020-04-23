@@ -1,5 +1,6 @@
 import React from "react";
 import parse from "html-react-parser";
+import "./help_style.scss";
 
 export const Help = () => {
   const instruction_list = [

@@ -1,4 +1,5 @@
 import React from "react";
+import "./home_style.scss";
 
 export const PlayerForm = props => (
   <form id="tournamentSearch" className="form" onSubmit={props.submit_search}>
