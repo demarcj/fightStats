@@ -2,7 +2,7 @@ import React from "react";
 import parse from "html-react-parser";
 import "./help_style.scss";
 
-export const Help = () => {
+export const Help: React.FC = () => {
   const instruction_list = [
     parse(`To test the form go to <a href="https://smash.gg" target="_blank">smash.gg</a> and copy and paste the name of the tournament in the first`),
     `Select a game`,

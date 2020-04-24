@@ -1,7 +1,12 @@
 import React from 'react';
 import "./info_style.scss";
 
-export const Info = (props:any) => (
+interface T{
+  results:String,
+  error:String
+}
+
+export const Info: React.FC <T> = props => (
   <aside className="stats_aside">
     <h2 className="header stats_header">Stats</h2>
     <p className="body_text">{props.results}</p>

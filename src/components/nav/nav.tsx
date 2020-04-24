@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./nav_style.scss";
 
-export const Nav = () => (
+export const Nav: React.FC = () => (
   <nav className="nav_link">
     <ul className="nav_list">
       <li className="nav_list_item">

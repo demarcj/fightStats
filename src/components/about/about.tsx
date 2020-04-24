@@ -1,7 +1,7 @@
 import React from "react";
 import "./about_style.scss";
 
-export const About = () => (
+export const About: React.FC = () => (
   <>
     <h2 className="content_header header">About Fight Stat</h2>
     <p className="body_text">

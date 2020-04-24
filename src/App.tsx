@@ -18,7 +18,7 @@ export default function App() {
   const [game, set_game] = useState("");
   const [event_list, set_event_list] = useState(["Select Game"]);
 
-  const input_change = e => {
+  const input_change = (e:any) => {
     e.preventDefault();
     if (e.target.name === "tournament") {
       set_tournament(e.target.value);
@@ -29,7 +29,7 @@ export default function App() {
     }
   };
 
-  const search_submit = async e => {
+  const search_submit = async (e:any) => {
     e.preventDefault();
     const selected_game = check_game(game);
     const tournament_list = await search_tournament( tournament, player, selected_game );
@@ -41,13 +41,13 @@ export default function App() {
     set_error(helper_link);
   };
 
-  const tournament_submit = async e => {
+  const tournament_submit = async (e:any) => {
     e.preventDefault();
     const getEventList = await get_game(tournament);
     set_event_list(getEventList);
   };
 
-  const empty_submit = e => {
+  const empty_submit = (e:any) => {
     e.preventDefault();
     set_error(test_error(tournament, player));
   };
