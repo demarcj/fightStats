@@ -29,7 +29,7 @@ https://demarcj.github.io/fightStats/
 - [ ] Create a dropdown box so that for the tournament and player input field so the user don't have to go to smash.gg to get that information
 - [ ] Add Try Catch for entries that does not match with smash.gg database.
 - [ ] Switch from smash.gg legacy api to the graphql version because at some point the legacy api might get delepleted 
-- [ ] Change the whole app to TypeScript
+- [x] Change the whole app to TypeScript
 - [ ] Import and set the Eslint setting
 - [ ] Reorganinze the files and folder, and refactor the code to reflect my current style of naming convention 
 - [ ] Change the favicon.ico file

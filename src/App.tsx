@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Header, Footer } from "./components/static";
 import { Home, PlayerForm, TournamentForm} from "./components/home";
 import { Nav } from "./components/nav/nav";
@@ -12,6 +12,7 @@ import "./App.scss";
 
 export default function App() {
   const [error, set_error] = useState("");
+  const [warning, set_warning] = useState("");
   const [tournament, set_tournament] = useState("");
   const [player, set_player] = useState("");
   const [results, set_results] = useState(""); 
@@ -44,7 +45,11 @@ export default function App() {
   const tournament_submit = async (e:any) => {
     e.preventDefault();
     const getEventList = await get_game(tournament);
-    set_event_list(getEventList);
+    if(getEventList === undefined){
+      set_warning(`Tournament Not Found`);
+    } else {
+      set_event_list(getEventList);
+    }
   };
 
   const empty_submit = (e:any) => {
@@ -70,6 +75,7 @@ export default function App() {
                 event_list={event_list}
                 tournament={tournament}
                 game={game}
+                warning={warning}
               />
               <PlayerForm
                 input_change={input_change}

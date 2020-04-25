@@ -1,7 +1,14 @@
 import React from "react";
 import "./home_style.scss";
+import { Interface } from "readline";
 
-export const PlayerForm = props => (
+interface T{
+  input_change:(e:any) => void,
+  player:string,
+  submit_search:(e:any) => void
+}
+
+export const PlayerForm: React.FC <T> = props => (
   <form id="tournamentSearch" className="form" onSubmit={props.submit_search}>
     <div className="inputgrg">
       <label htmlFor="player" className="label">Player</label>

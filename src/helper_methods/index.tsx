@@ -1,4 +1,4 @@
-export { load_bracket } from "./load_bracket";
+export { get_player_info } from "./get_player_info";
 export { search_tournament } from "./search_tournament";
 export { load_tournament } from "./load_tournament";
 export { test_error } from "./error";
