@@ -44,11 +44,11 @@ export default function App() {
 
   const tournament_submit = async (e:any) => {
     e.preventDefault();
-    const getEventList = await get_game(tournament);
-    if(getEventList === undefined){
-      set_warning(`Tournament Not Found`);
+    const get_event_list = await get_game(tournament);
+    if(typeof get_event_list === `string`){
+      set_warning(get_event_list);
     } else {
-      set_event_list(getEventList);
+      set_event_list(get_event_list);
     }
   };
 

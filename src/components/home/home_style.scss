@@ -4,6 +4,10 @@
   font-weight:bold;
 }
 
+.tournament_warning{
+  min-height:30px;
+}
+
 .input{
   margin-bottom: 15px;
   min-width: 50%;
@@ -13,6 +17,7 @@
 .game_form{
   display: block;
   min-width: 51.5%;
+  margin-bottom: 30px;
 }
 
 .button {

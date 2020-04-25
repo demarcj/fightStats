@@ -1,10 +1,10 @@
 import { check_tournament_name } from "./index";
 
-export const get_game = async (phase_group_id:string) => {
+export const get_game = async (user_input:string) => {
   try{
-    const tournament = check_tournament_name(phase_group_id);
+    const tournament_name = check_tournament_name(user_input);
     const proxy_url = `https://cors-anywhere.herokuapp.com/`;
-    const target_url = `https://api.smash.gg/tournament/${tournament}?expand[]=event`;
+    const target_url = `https://api.smash.gg/tournament/${tournament_name}?expand[]=event`;
     const get_url = await fetch(proxy_url + target_url);
     const get_json = await get_url.json();
     const game_type_id = await Object.values(get_json.entities.event);
@@ -12,7 +12,8 @@ export const get_game = async (phase_group_id:string) => {
     game_type.unshift("Select Game");
     return game_type; 
   } catch (e) {
-    return undefined;
+    const out_come = user_input === `` ? `The tournament field is empty` : `Tournament Not Found`;
+    return out_come;
   }
 }
   
