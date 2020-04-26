@@ -6,7 +6,7 @@ import { Nav } from "./components/nav/nav";
 import { Help } from "./components/help/help";
 import { Info } from "./components/info/info";
 import { About } from "./components/about/about";
-import { search_tournament, test_error, get_game, check_game } from "./helper_methods";
+import { search_tournament, test_error, get_game, check_game, get_message } from "./helper_methods";
 import "./App.scss";
 
 
@@ -30,15 +30,15 @@ export default function App() {
     }
   };
 
-  const search_submit = async (e:any) => {
+  const submit_player = async (e:any) => {
     e.preventDefault();
     const selected_game = check_game(game);
-    const tournament_list = await search_tournament( tournament, player, selected_game );
-    const found_message = `${tournament_list} did play in ${tournament.toUpperCase()} for ${selected_game}`;
+    const submited_player = await search_tournament( tournament, player, selected_game );
+    const found_message = `${submited_player} did play in ${tournament.toUpperCase()} for ${selected_game}`;
     const not_found_message = `Player Not Found! To check for players from this tournament check.`;
-    const message = tournament_list === "Player Not Found!" ? `${not_found_message}` : found_message;
-    const helper_link = tournament_list === "Player Not Found!" ? "smash.gg" : "";
-    set_results(message);
+    const message = submited_player === "Player Not Found!" ? `${not_found_message}` : found_message;
+    const helper_link = submited_player === "Player Not Found!" ? "smash.gg" : "";
+    set_results(get_message(submited_player, tournament, selected_game));
     set_error(helper_link);
   };
 
@@ -57,7 +57,7 @@ export default function App() {
     set_error(test_error(tournament, player));
   };
 
-  const submit_search = tournament ? search_submit : empty_submit;
+  const submit_search = tournament ? submit_player : empty_submit;
   return (
     <Router>
       <Header />

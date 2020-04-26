@@ -7,3 +7,4 @@ export { check_tournament_name } from "./check_tournament_name";
 export { get_game } from "./get_game_event";
 export { get_game_name } from "./get_game_name";
 export { check_game } from "./check_game"; 
+export { get_message } from "./get_message";

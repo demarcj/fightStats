@@ -13,7 +13,7 @@ export const get_player_info = async (page_num:number, player_name:string, tourn
       }) 
       .filter((obj:string) => check_player_name(obj) === check_player_name(player_name));
       return gamer_tag.length === 0 ? "Player Not Found!" : gamer_tag[0];
-      });
+    });
     return get_tournament_player_list[0];
   }
   return get_player_name();
