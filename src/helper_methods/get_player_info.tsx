@@ -1,11 +1,11 @@
-import { check_player_name } from "./index";
+import { check_player_name, check_tournament_name } from "./index";
 
 export const get_player_info = async (page_num:number, player_name:string, tournament:string, game:string) => {
   const get_player_name = async () => {
     const tournament_player_list = Array(page_num).fill(undefined);
     const get_tournament_player_list = tournament_player_list.map(async (url, i) => {
       const target_url = `https://cors-anywhere.herokuapp.com/https://api.smash.gg/tournament/${tournament.split(" ").join("-")}`;
-      const tail_end_url = `/event/${game.split(" ").join("-")}/standings?entityType=event&expand[]=entrants&mutations[]=playerData&mutations[]=standingLosses&page=${i}&per_page=100`;      
+      const tail_end_url = `/event/${check_tournament_name(game)}/standings?entityType=event&expand[]=entrants&mutations[]=playerData&mutations[]=standingLosses&page=${i}&per_page=100`;      
       const get_url = await fetch(target_url + tail_end_url);
       const get_json = await get_url.json();
       const gamer_tag = get_json.items.entities.entrants.map((name:{mutations:{participants:any[]}}) => {
